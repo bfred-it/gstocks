@@ -1,0 +1,62 @@
+.GS ~ * {
+	display: none !important;
+}
+.Stock {
+	float: left;
+	overflow: hidden;
+	border: solid 1px #eee;
+	margin-left: -1px;
+	margin-top: -1px;
+}
+.Stock-frame {
+	border: none;
+	overflow: hidden;
+  width: 683px;
+  height: 543px;
+  margin-left: -137px;
+  margin-top: -184px;
+}
+.GS {
+	padding-right: 30px;
+}
+.Settings {
+	position: fixed;
+	top: 0;
+	right: 0;
+	text-align: right;
+}
+.Settings-add,
+.Settings-edit {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-family: sans-serif;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+
+	width: 1.3em;
+	height: 1.3em;
+	line-height: 1.3;
+
+	border: solid 1px #eee;
+	font-size: 1.5em;
+	text-align: center;
+	outline: none;
+
+	-webkit-transition: width 0.3s, height 0.3s;
+	transition: width 0.3s, height 0.3s;
+}
+.Settings-add:focus {
+	text-align: right;
+	width: 3em;
+}
+.Settings-edit {
+	height: 2.6em;
+	top: 1.3em;
+}
+.Settings-edit:focus {
+	text-align: left;
+	width: 10em;
+	height: 3.9em;
+}

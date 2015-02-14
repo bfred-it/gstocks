@@ -1,0 +1,25 @@
+{
+    "name": "__MSG_appName__",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "description": "__MSG_appDescription__",
+    "icons": {
+        "128": "icon.png"
+    },
+    "default_locale": "en",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.google.com/finance?g=stocks"
+            ],
+            "css": [
+                "style.css"
+            ],
+            "js": [
+                "script.js"
+            ],
+            "run_at": "document_start",
+            "all_frames": false
+        }
+    ]
+}
