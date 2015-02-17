@@ -103,8 +103,7 @@ function rememberStock (name) {
 }
 (function () {
 	//load list
-	var list = getSettings('list');
-	list.forEach(appendStock);
+	getSettings('list').forEach(appendStock);
 
 	//load ui
 	var sets = getEl('Field Settings');
@@ -135,20 +134,23 @@ function rememberStock (name) {
 	sets.appendChild(edit);
 
 	edit.addEventListener('focus', function () {
-		var list = getSettings('list')
-		this.value = list.join(',');
-	});
-	edit.addEventListener('blur', function () {
 		var list = getSettings('list');
-		if (this.value !== list.join(',')) {//if it has changed
+		this.lastValue = this.value = list.join(', ');
+	});
+
+	edit.addEventListener('blur', function () {
+		if (this.value !== this.lastValue) {
 			//update settings
-			list = this.value.split(',').filter(function (stock) {
-				stock = stock.trim();
+			var list = this.value.split(',')
+			.map(function (stock) {
+				return stock.trim();
+			})
+			.filter(function (stock) {
 				if (stock) {
 					return stock;
 				}
 			});
-			saveSettings(settings);
+			saveSettings('list', list);
 
 			//replace old with new in the view
 			[].forEach.call(document.querySelectorAll('.Stock'), function (oldStock) {
