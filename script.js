@@ -47,6 +47,9 @@ function saveSettings (name, index, value) {
 		alert('I couldn\'t save your settings, there was an error. Open a new gstocks page and try again. Error code: ', + e.name + ': ' + e.message);
 	}
 }
+function makeUid (min, max) {
+	return Math.random().toString(36).substr(min || 2, max || 7);
+}
 function getEl (classes, tag) {
 	tag = tag || 'div';
 	var el = document.createElement(tag);
@@ -64,12 +67,14 @@ function getFrame (name) {
 	wrapper.appendChild(frame);
 
 	//show notes
-	var notes = getEl('Stock-notes');
+	var notes = getEl('Stock-notes', 'label');
 	notes.innerText = getSettings('notes', name) || '';
 	wrapper.appendChild(notes);
 
 	//ready note input
 	var notesField = getEl('Field Stock-notes-input', 'textarea');
+	notesField.id = 'notes-'+makeUid();
+	notes.setAttribute('for', notesField.id);
 	wrapper.appendChild(notesField);
 
 	notesField.addEventListener('focus', function () {
